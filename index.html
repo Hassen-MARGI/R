@@ -333,8 +333,9 @@
             const comment = document.getElementById('comment').value;
             
             const formData = new FormData();
-            formData.append('entry.153265784_sentinel', selectedRating); // Stars
-            formData.append('entry.1711202497', comment);               // Comment
+            formData.append('entry.153265784', selectedRating);       // main stars field
+            formData.append('entry.153265784_sentinel', '1');        // sentinel
+            formData.append('entry.1711202497', comment);            // comment
         
             const submitBtn = form.querySelector('.submit-btn');
             submitBtn.disabled = true;
