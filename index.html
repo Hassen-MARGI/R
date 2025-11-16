@@ -328,15 +328,15 @@
             const comment = document.getElementById('comment').value;
             
             const formData = new FormData();
-            formData.append('entry.153265784_sentinel', selectedRating); // Stars field
-            formData.append('entry.1711202497', comment); // Comment field
+            formData.append('entry.1711202497', selectedRating); // Stars field
+            formData.append('entry.153265784', comment); // Comment field
 
             // Disable form while submitting
             const submitBtn = form.querySelector('.submit-btn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
 
-            // Submit to Google Form
+            // Submit to Google Form with proper endpoint
             fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdTreH7fy40LrEiV4cXjl9NnRNlUdmkc73qWo908143ZZEj9A/formResponse', {
                 method: 'POST',
                 mode: 'no-cors',
