@@ -324,22 +324,22 @@
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
+        
             if (selectedRating === 0) {
                 alert('Please select a rating');
                 return;
             }
-
+        
             const comment = document.getElementById('comment').value;
             
             const formData = new FormData();
-            formData.append('entry.1711202497', selectedRating);
-            formData.append('entry.153265784', comment);
-
+            formData.append('entry.153265784', selectedRating); // Stars
+            formData.append('entry.1711202497', comment);       // Comment
+        
             const submitBtn = form.querySelector('.submit-btn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
-
+        
             fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdTreH7fy40LrEiV4cXjl9NnRNlUdmkc73qWo908143ZZEj9A/formResponse', {
                 method: 'POST',
                 mode: 'no-cors',
@@ -349,7 +349,7 @@
                 successMessage.classList.add('show');
                 form.style.opacity = '0.6';
                 form.style.pointerEvents = 'none';
-
+        
                 setTimeout(() => {
                     form.reset();
                     selectedRating = 0;
@@ -369,6 +369,7 @@
                 submitBtn.textContent = 'Submit';
             });
         });
+
 
         form.addEventListener('reset', () => {
             selectedRating = 0;
