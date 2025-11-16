@@ -235,12 +235,12 @@
         <div class="header">
             <div class="emoji">🚗</div>
             <h1>How was my driving?</h1>
-            <p class="subtitle">Your feedback helps me improve</p>
+            <p class="subtitle">If you hate it, maybe try staying in your lane. Your salty feedback fuels my zero f*cks. Rate below if you must</p>
         </div>
 
         <form id="feedbackForm">
             <div class="form-group">
-                <label>Rate your experience</label>
+                <label>Rate me</label>
                 <div class="stars-container" id="starsContainer">
                     <span class="star" data-value="1">⭐</span>
                     <span class="star" data-value="2">⭐</span>
@@ -255,7 +255,7 @@
                 <label for="comment">Add a comment (optional)</label>
                 <textarea 
                     id="comment" 
-                    placeholder="Share your thoughts..." 
+                    placeholder="Spill your tears here...." 
                     rows="4"
                     maxlength="500"
                 ></textarea>
@@ -281,11 +281,11 @@
         let selectedRating = 0;
 
         const ratingLabels = {
-            1: 'Needs improvement',
+            1: 'You're jealous',
             2: 'Could be better',
-            3: 'Average',
-            4: 'Good',
-            5: 'Excellent!'
+            3: 'Mid rating from a mid driver',
+            4: 'Almost impressed? Nah, you're just too scared to admit I'm a god',
+            5: 'You're blind or delusional. Seek help, or learn to drive'
         };
 
         stars.forEach(star => {
