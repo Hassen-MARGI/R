@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/R/Hyundai_logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>How Was My Driving?</title>
+  <style>
+    /* Critical CSS - inline to prevent flash */
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #e2e8f0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    html[data-theme="dark"] body,
+    html:not([data-theme]) body {
+      background: #0f172a;
+    }
+
+    html[data-theme="light"] body {
+      background: #e2e8f0;
+    }
+
+    /* Hide until ready */
+    #root {
+      opacity: 0;
+    }
+
+    html.ready #root {
+      opacity: 1;
+      transition: opacity 0.2s ease-out;
+    }
+
+    /* Disable animations until ready */
+    html:not(.ready) * {
+      animation: none !important;
+      transition: none !important;
+    }
+  </style>
+  <script>
+    // Set theme BEFORE anything renders
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+        // Also update theme-color meta for mobile browsers
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', t === 'light' ? '#e2e8f0' : '#0f172a');
+      } catch (e) { }
+    })();
+  </script>
+  <script type="module" crossorigin src="/R/assets/index-BtdoFV1A.js"></script>
+  <link rel="stylesheet" crossorigin href="/R/assets/index-DJECIwUF.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
