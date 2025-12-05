@@ -1,0 +1,957 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Common */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+
+  /* Default Dark Theme */
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #1e293b;
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  --accent: #8b5cf6;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.37);
+  --input-bg: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='light'] {
+  --bg-gradient-start: #e2e8f0;
+  --bg-gradient-end: #f8fafc;
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.3);
+  --accent: #7c3aed;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  /* Darker border for light mode visibility */
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --shadow-color: rgba(100, 116, 139, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* Prevent scroll chaining */
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-main);
+}
+
+/* Fixed background that covers entire viewport including safe areas */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  background: radial-gradient(circle at top left, var(--bg-gradient-end), var(--bg-gradient-start));
+  background-size: cover;
+  z-index: -1;
+}
+
+#root {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Glassmorphism Generic Class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px 0 var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  color: var(--text-main);
+  letter-spacing: -0.05em;
+  position: relative;
+  z-index: 10;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+/* Utilities */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+
+/* Inputs */
+input,
+textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background: var(--glass-bg);
+}
+
+/* Button */
+.btn-primary {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--primary-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Layout Specifics */
+/* Layout Specifics */
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  /* Increased slightly for better mobile spacing */
+  height: 100%;
+  height: 100dvh;
+  /* Use dynamic viewport height for mobile */
+  padding: var(--spacing-md);
+
+  /* Critical: Add padding to prevent content from being hidden behind fixed elements */
+  padding-top: max(4.5rem, env(safe-area-inset-top, 4.5rem));
+  padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Start from top to prevent cutting off when scrolling */
+  align-items: center;
+  position: relative;
+  z-index: 5;
+
+  /* This is the ONLY scroll container */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for cleaner UI */
+.app-container::-webkit-scrollbar {
+  display: none;
+}
+
+.app-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.app-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Ensure content doesn't shrink */
+  flex-shrink: 0;
+  /* Auto margins to vertically center if content is small */
+  margin-top: auto;
+  margin-bottom: auto;
+  /* Add slight negative margin to visually lift it higher than dead-center */
+  transform: translateY(-10vh);
+}
+
+/* Fixed Social Links */
+.fixed-socials {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.5rem;
+  z-index: 50;
+  pointer-events: none;
+  /* Let clicks pass through the padding area */
+}
+
+.fixed-socials>* {
+  pointer-events: auto;
+  /* Re-enable clicks on the actual content */
+}
+
+/* Fixed Theme Toggle */
+.fixed-theme-toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.fixed-theme-toggle>* {
+  pointer-events: auto;
+}
+
+/* Responsive Grid fixes */
+@media (max-width: 600px) {
+
+  .fixed-socials,
+  .fixed-theme-toggle {
+    padding: 1rem;
+  }
+
+  .app-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* Adjust top padding for title to clear the fixed top elements */
+    padding-top: max(1rem, env(safe-area-inset-top, 1rem));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
+  }
+
+  .app-content {
+    /* Less aggressive lift on mobile where space is tighter */
+    transform: translateY(-2vh);
+  }
+}
+
+
+
+/* Very small screens (short height) */
+@media (max-height: 700px) {
+  .app-container {
+    justify-content: flex-start;
+    padding-top: max(3rem, env(safe-area-inset-top, 3rem));
+  }
+}
+
+/* View Transition Styles */
+::view-transition-group(root) {
+  animation-duration: 0.7s;
+}
+
+::view-transition-new(root),
+::view-transition-old(root) {
+  /* Prevent default cross-fade */
+  mix-blend-mode: normal;
+}
+
+/* Pseudo-Tailwind Utilities for new components */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.z-\[3\] {
+  z-index: 3;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.rays-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ========== GARBAGE TRUCK BUTTON ========== */
+.garbage-truck-btn {
+  --truck-primary: #3b82f6;
+  --truck-primary-light: #60a5fa;
+  --truck-primary-dark: #2563eb;
+  --truck-dark: #0f172a;
+  --truck-grey-dark: #1e293b;
+  --truck-grey: #334155;
+  --truck-white: #fff;
+  --truck-green: #22c55e;
+  --trash-dark: #374151;
+  --trash-mid: #4b5563;
+
+  appearance: none;
+  border: 0;
+  background: var(--truck-dark);
+  position: relative;
+  height: 63px;
+  width: 100%;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 32px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.6);
+}
+
+.garbage-truck-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 15px 50px rgba(30, 41, 59, 0.6);
+}
+
+.garbage-truck-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.garbage-truck-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.garbage-truck-btn span {
+  --o: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 19px;
+  line-height: 24px;
+  color: var(--truck-white);
+  font-size: 16px;
+  font-weight: 600;
+  opacity: var(--o);
+  transition: opacity 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+}
+
+.garbage-truck-btn span.default {
+  transition-delay: 0.3s;
+}
+
+.garbage-truck-btn span.success {
+  --offset: 16px;
+  --o: 0;
+}
+
+.garbage-truck-btn span.success svg {
+  width: 12px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: top;
+  fill: none;
+  margin: 7px 0 0 4px;
+  stroke: var(--truck-green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: var(--offset);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Road lines */
+.garbage-truck-btn .lines {
+  opacity: 0;
+  position: absolute;
+  height: 3px;
+  background: var(--truck-white);
+  border-radius: 2px;
+  width: 6px;
+  top: 30px;
+  left: 100%;
+  box-shadow: 15px 0 0 var(--truck-white), 30px 0 0 var(--truck-white), 45px 0 0 var(--truck-white),
+    60px 0 0 var(--truck-white), 75px 0 0 var(--truck-white), 90px 0 0 var(--truck-white),
+    105px 0 0 var(--truck-white), 120px 0 0 var(--truck-white), 135px 0 0 var(--truck-white),
+    150px 0 0 var(--truck-white), 165px 0 0 var(--truck-white), 180px 0 0 var(--truck-white),
+    195px 0 0 var(--truck-white), 210px 0 0 var(--truck-white), 225px 0 0 var(--truck-white),
+    240px 0 0 var(--truck-white), 255px 0 0 var(--truck-white), 270px 0 0 var(--truck-white);
+}
+
+/* Garbage Truck */
+.garbage-truck-btn .truck {
+  width: 90px;
+  height: 44px;
+  left: 100%;
+  z-index: 1;
+  top: 10px;
+  position: absolute;
+  transform: translateX(24px);
+}
+
+.garbage-truck-btn .truck:before,
+.garbage-truck-btn .truck:after {
+  --r: -90deg;
+  content: '';
+  height: 2px;
+  width: 20px;
+  right: 88px;
+  position: absolute;
+  display: block;
+  background: var(--truck-white);
+  border-radius: 1px;
+  transform-origin: 100% 50%;
+  transform: rotate(var(--r));
+}
+
+.garbage-truck-btn .truck:before {
+  top: 6px;
+}
+
+.garbage-truck-btn .truck:after {
+  --r: 90deg;
+  bottom: 6px;
+}
+
+/* Garbage compactor back */
+.garbage-truck-btn .truck .back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 55px;
+  height: 44px;
+  background: linear-gradient(to bottom, var(--truck-primary), var(--truck-primary-dark));
+  border-radius: 3px 6px 3px 3px;
+  z-index: 10;
+}
+
+.garbage-truck-btn .truck .opening {
+  position: absolute;
+  left: -6px;
+  top: 8px;
+  width: 8px;
+  height: 28px;
+  background: linear-gradient(to right, #0f1218, #1a1f2e);
+  border-radius: 2px 0 0 2px;
+  z-index: 5;
+}
+
+.garbage-truck-btn .truck .back:before {
+  content: '';
+  position: absolute;
+  width: 45px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.2);
+  top: 10px;
+  left: 5px;
+  border-radius: 2px;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2), 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.garbage-truck-btn .truck .back:after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(to right, #888, #aaa, #888);
+  right: -4px;
+  top: 3px;
+  border-radius: 2px;
+  transform-origin: 50% 0;
+}
+
+/* Truck cabin */
+.garbage-truck-btn .truck .front {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 3px 10px 10px 3px;
+  width: 28px;
+  height: 44px;
+  left: 55px;
+}
+
+.garbage-truck-btn .truck .front:before,
+.garbage-truck-btn .truck .front:after {
+  content: '';
+  position: absolute;
+  display: block;
+}
+
+.garbage-truck-btn .truck .front:before {
+  height: 16px;
+  width: 3px;
+  left: 0;
+  top: 14px;
+  background: linear-gradient(var(--truck-grey), var(--truck-grey-dark));
+}
+
+.garbage-truck-btn .truck .front:after {
+  border-radius: 3px 10px 10px 3px;
+  background: var(--truck-primary);
+  width: 26px;
+  height: 44px;
+  right: 0;
+}
+
+.garbage-truck-btn .truck .front .window {
+  overflow: hidden;
+  border-radius: 2px 8px 8px 2px;
+  background: var(--truck-primary-light);
+  transform: perspective(4px) rotateY(3deg);
+  width: 24px;
+  height: 44px;
+  position: absolute;
+  left: 2px;
+  top: 0;
+  z-index: 1;
+  transform-origin: 0 50%;
+}
+
+.garbage-truck-btn .truck .front .window:before,
+.garbage-truck-btn .truck .front .window:after {
+  content: '';
+  position: absolute;
+  right: 0;
+}
+
+.garbage-truck-btn .truck .front .window:before {
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: var(--truck-dark);
+}
+
+.garbage-truck-btn .truck .front .window:after {
+  width: 14px;
+  top: 8px;
+  height: 4px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.14);
+  transform: skewY(14deg);
+  box-shadow: 0 8px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Headlights */
+.garbage-truck-btn .truck .light {
+  width: 3px;
+  height: 8px;
+  left: 81px;
+  transform-origin: 100% 50%;
+  position: absolute;
+  border-radius: 2px;
+  transform: scaleX(0.8);
+  background: #fbbf24;
+}
+
+.garbage-truck-btn .truck .light:before {
+  content: '';
+  height: 4px;
+  width: 8px;
+  opacity: 0;
+  transform: perspective(2px) rotateY(-15deg) scaleX(0.94);
+  position: absolute;
+  transform-origin: 0 50%;
+  left: 3px;
+  top: 50%;
+  margin-top: -2px;
+  background: linear-gradient(90deg, #fbbf24, rgba(251, 191, 36, 0.7), rgba(251, 191, 36, 0));
+}
+
+.garbage-truck-btn .truck .light.top {
+  top: 6px;
+}
+
+.garbage-truck-btn .truck .light.bottom {
+  bottom: 6px;
+}
+
+/* Warning light */
+.garbage-truck-btn .truck .warning-light {
+  position: absolute;
+  width: 8px;
+  height: 6px;
+  background: #ef4444;
+  border-radius: 3px 3px 0 0;
+  top: -4px;
+  left: 20px;
+  z-index: 5;
+}
+
+/* Trash bag */
+.garbage-truck-btn .trash {
+  position: absolute;
+  width: 22px;
+  height: 26px;
+  right: 100%;
+  top: 18px;
+  z-index: 3;
+  opacity: 0;
+}
+
+.garbage-truck-btn .trash .bag {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--trash-mid) 0%, var(--trash-dark) 100%);
+  border-radius: 3px 3px 5px 5px;
+  bottom: 0;
+}
+
+.garbage-truck-btn .trash .bag:before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 6px;
+  background: var(--trash-dark);
+  border-radius: 50% 50% 0 0;
+  top: -4px;
+  left: 6px;
+}
+
+.garbage-truck-btn .trash .bag:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  top: 5px;
+  left: 4px;
+  transform: rotate(-10deg);
+}
+
+.garbage-truck-btn .trash .item1 {
+  position: absolute;
+  width: 3px;
+  height: 8px;
+  background: #9ca3af;
+  border-radius: 1px;
+  top: 0;
+  left: 4px;
+  transform: rotate(-15deg);
+}
+
+.garbage-truck-btn .trash .item2 {
+  position: absolute;
+  width: 4px;
+  height: 6px;
+  background: #d97706;
+  border-radius: 1px;
+  top: 2px;
+  right: 5px;
+  transform: rotate(10deg);
+}
+
+/* Animation states */
+.garbage-truck-btn.animate span.default {
+  --o: 0;
+  transition-delay: 0s;
+}
+
+.garbage-truck-btn.animate span.success {
+  --offset: 0;
+  --o: 1;
+  transition-delay: 5s;
+}
+
+.garbage-truck-btn.animate span.success svg {
+  transition-delay: 5.3s;
+}
+
+.garbage-truck-btn.animate .truck {
+  animation: truck-drive 7s ease forwards;
+}
+
+.garbage-truck-btn.animate .truck:before {
+  animation: exhaust1 2s ease forwards 0.3s;
+}
+
+.garbage-truck-btn.animate .truck:after {
+  animation: exhaust2 2s ease forwards 0.6s;
+}
+
+.garbage-truck-btn.animate .truck .light:before {
+  animation: truck-light 7s ease forwards;
+}
+
+.garbage-truck-btn.animate .trash {
+  animation: trash-pickup 7s ease forwards;
+}
+
+.garbage-truck-btn.animate .lines {
+  animation: road-lines 7s ease forwards;
+}
+
+.garbage-truck-btn.animate .truck .back:after {
+  animation: lift-arm 7s ease forwards;
+}
+
+.garbage-truck-btn.animate .truck .warning-light {
+  animation: warning-blink 0.5s ease infinite;
+}
+
+@keyframes truck-drive {
+
+  10%,
+  30% {
+    transform: translateX(var(--truck-stop, -180px));
+  }
+
+  40% {
+    transform: translateX(var(--truck-pickup, -120px));
+  }
+
+  60% {
+    transform: translateX(var(--truck-exit, -240px));
+  }
+
+  75%,
+  100% {
+    transform: translateX(24px);
+  }
+}
+
+@keyframes road-lines {
+
+  0%,
+  30% {
+    opacity: 0;
+    transform: scaleY(0.7) translateX(0);
+  }
+
+  35%,
+  65% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleY(0.7) translateX(-400px);
+  }
+}
+
+@keyframes truck-light {
+
+  0%,
+  30% {
+    opacity: 0;
+    transform: perspective(2px) rotateY(-15deg) scaleX(0.88);
+  }
+
+  40%,
+  100% {
+    opacity: 1;
+    transform: perspective(2px) rotateY(-15deg) scaleX(0.94);
+  }
+}
+
+@keyframes exhaust1 {
+
+  30%,
+  50% {
+    transform: rotate(25deg);
+  }
+}
+
+@keyframes exhaust2 {
+
+  30%,
+  50% {
+    transform: rotate(-25deg);
+  }
+}
+
+@keyframes trash-pickup {
+
+  8%,
+  10% {
+    transform: translateX(var(--trash-start, 50px)) translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+
+  14% {
+    transform: translateX(var(--trash-lift, 70px)) translateY(-20px) rotate(-10deg);
+    opacity: 1;
+  }
+
+  18% {
+    transform: translateX(var(--trash-arc, 95px)) translateY(-25px) rotate(-40deg);
+    opacity: 1;
+  }
+
+  21% {
+    transform: translateX(var(--trash-fall, 110px)) translateY(-5px) rotate(-70deg);
+    opacity: 1;
+  }
+
+  24% {
+    transform: translateX(var(--trash-inside, 115px)) translateY(8px) rotate(-90deg);
+    opacity: 0;
+  }
+
+  25%,
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes lift-arm {
+
+  12%,
+  14% {
+    transform: rotate(-30deg);
+  }
+
+  20%,
+  22% {
+    transform: rotate(-60deg);
+  }
+
+  24% {
+    transform: rotate(-30deg);
+  }
+
+  26%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes warning-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+    background: #ef4444;
+  }
+
+  50% {
+    opacity: 0.4;
+    background: #fca5a5;
+  }
+}
